@@ -372,8 +372,68 @@
         ],
         link: "https://www.tiktok.com/@actuarya/video/7538222214148001037",
         explanation: "¡Excelente! Las historias con títulos atraen más atención. Si deseas saber más sobre este tema, puedes visitar el enlace:"
+      },
+      {
+        question: "¿Qué palabra clave debe aparecer múltiples veces para mejorar el alcance de tu video?",
+        options: [
+          { text: "A) Viral", correct: false },
+          { text: "B) Algoritmo", correct: true },
+          { text: "C) Gratis", correct: false }
+        ],
+        link: "https://www.tiktok.com/@actuarya/video/7540820397776735543",
+        explanation: "¡Excelente! Repetir una palabra clave como 'algoritmo' en títulos, subtítulos y portada ayuda al algoritmo. Si deseas saber más sobre este tema, puedes visitar el enlace:"
+      },
+      {
+        question: "¿Qué tipo de seguidores 'matan' tu cuenta según Actuarya?",
+        options: [
+          { text: "A) Seguidores reales", correct: false },
+          { text: "B) Seguidores fantasmas", correct: true },
+          { text: "C) Seguidores de otro país", correct: false }
+        ],
+        link: "https://www.tiktok.com/@actuarya/video/7541995349024558349",
+        explanation: "¡Excelente! Los seguidores fantasmas arruinan tu engagement. Si deseas saber más sobre este tema, puedes visitar el enlace:"
+      },
+      {
+        question: "¿Qué debes hacer si recibes un mensaje privado sospechoso?",
+        options: [
+          { text: "A) Abrirlo para ver de qué se trata", correct: false },
+          { text: "B) Borrarlo sin abrirlo", correct: true },
+          { text: "C) Responder preguntando quién es", correct: false }
+        ],
+        link: "https://www.tiktok.com/@actuarya/video/7540883417357978894",
+        explanation: "¡Excelente! La curiosidad puede comprometer tu cuenta. Si deseas saber más sobre este tema, puedes visitar el enlace:"
+      },
+      {
+        question: "¿Qué acción recomienda Actuarya para 'pedir ayuda al algoritmo'?",
+        options: [
+          { text: "A) Denunciar cuentas competidoras", correct: false },
+          { text: "B) Actualizar la visibilidad de tus videos diariamente", correct: true },
+          { text: "C) Comentar en videos populares", correct: false }
+        ],
+        link: "https://www.tiktok.com/@actuarya/video/7542302952648609079",
+        explanation: "¡Excelente! Actualizar la visibilidad 'refresca' tus videos. Si deseas saber más sobre este tema, puedes visitar el enlace:"
+      },
+      {
+        question: "¿Qué debe incluir una respuesta efectiva a un comentario?",
+        options: [
+          { text: "A) Solo un emoji", correct: false },
+          { text: "B) Saludo, agradecimiento y pregunta", correct: true },
+          { text: "C) Un enlace a tu perfil", correct: false }
+        ],
+        link: "https://www.tiktok.com/@actuarya/video/7540447018838232375",
+        explanation: "¡Excelente! Esta estructura genera conversaciones reales. Si deseas saber más sobre este tema, puedes visitar el enlace:"
       }
     ];
+
+    // Mezclar opciones aleatoriamente
+    function shuffleOptions(options) {
+      const shuffled = [...options];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
 
     const questionText = document.getElementById("question-text");
     const optionsContainer = document.getElementById("options-container");
@@ -393,7 +453,10 @@
       feedback.classList.remove("show");
       nextBtn.style.display = "none";
 
-      q.options.forEach(option => {
+      // Mezclar opciones
+      const shuffledOptions = shuffleOptions(q.options);
+
+      shuffledOptions.forEach(option => {
         const div = document.createElement("div");
         div.classList.add("option");
         div.innerHTML = option.text;
@@ -424,7 +487,6 @@
         feedback.innerHTML = "<strong>Respuesta incorrecta.</strong> Revisa el contenido y vuelve a intentarlo.";
       }
 
-      // Actualizar contador
       correctCount.textContent = correct;
       wrongCount.textContent = wrong;
 
